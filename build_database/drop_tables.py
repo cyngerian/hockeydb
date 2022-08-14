@@ -2,20 +2,20 @@ import psycopg2
 from config import config
 
 
-def create_tables():
-    """ create tables in the PostgreSQL database"""
-    commands = (
+def drop_tables():
+    """ drops tables in the PostgreSQL database"""
+    command = (
         """
-        CREATE TABLE IF NOT EXISTS nhldb.teamstest (
-            teamID integer NOT NULL,
-            name character varying(50) NOT NULL,
-            abbreviation character varying(5) NOT NULL,
-            city character varying(50) NOT NULL,
-            divisionID integer NOT NULL,
-            venue character varying(25) NOT NULL,
-            location character varying(25) NOT NULL,
-            PRIMARY KEY (teamID)
-        )
+        DROP TABLE 
+              nhldb.teams
+            , nhldb.conferences   
+            , nhldb.divisions
+            , nhldb.gameplayerstats
+            , nhldb.gameresults
+            , nhldb.games
+            , nhldb.players
+            , nhldb.seasons
+            , nhldb.teamsplayers
         """)
     conn = None
     try:
@@ -25,8 +25,7 @@ def create_tables():
         conn = psycopg2.connect(**params)
         cur = conn.cursor()
         # create table one by one
-        for command in commands:
-            cur.execute(command)
+        cur.execute(command)
         # close communication with the PostgreSQL database server
         cur.close()
         # commit the changes
@@ -39,4 +38,4 @@ def create_tables():
 
 
 if __name__ == '__main__':
-    create_tables()
+    drop_tables()
