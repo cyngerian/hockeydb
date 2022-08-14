@@ -1,0 +1,290 @@
+{
+      "0":{
+            "abbreviation":"NJD", 
+            "city":"Newark", 
+            "divisionId":18, 
+            "location":"New Jersey", 
+            "name":"New Jersey Devils", 
+            "teamId":1, 
+            "venue":"Prudential Center"
+      }, 
+      "1":{
+            "abbreviation":"NYI", 
+            "city":"Elmont", 
+            "divisionId":18, 
+            "location":"New York", 
+            "name":"New York Islanders", 
+            "teamId":2, 
+            "venue":"UBS Arena"
+      }, 
+      "2":{
+            "abbreviation":"NYR", 
+            "city":"New York", 
+            "divisionId":18, 
+            "location":"New York", 
+            "name":"New York Rangers", 
+            "teamId":3, 
+            "venue":"Madison Square Garden"
+      }, 
+      "3":{
+            "abbreviation":"PHI", 
+            "city":"Philadelphia", 
+            "divisionId":18, 
+            "location":"Philadelphia", 
+            "name":"Philadelphia Flyers", 
+            "teamId":4, 
+            "venue":"Wells Fargo Center"
+      }, 
+      "4":{
+            "abbreviation":"PIT", 
+            "city":"Pittsburgh", 
+            "divisionId":18, 
+            "location":"Pittsburgh", 
+            "name":"Pittsburgh Penguins", 
+            "teamId":5, 
+            "venue":"PPG Paints Arena"
+      }, 
+      "5":{
+            "abbreviation":"BOS", 
+            "city":"Boston", 
+            "divisionId":17, 
+            "location":"Boston", 
+            "name":"Boston Bruins", 
+            "teamId":6, 
+            "venue":"TD Garden"
+      }, 
+      "6":{
+            "abbreviation":"BUF", 
+            "city":"Buffalo", 
+            "divisionId":17, 
+            "location":"Buffalo", 
+            "name":"Buffalo Sabres", 
+            "teamId":7, 
+            "venue":"KeyBank Center"
+      }, 
+      "7":{
+            "abbreviation":"MTL", 
+            "city":"Montr\u00e9al", 
+            "divisionId":17, 
+            "location":"Montr\u00e9al", 
+            "name":"Montr\u00e9al Canadiens", 
+            "teamId":8, 
+            "venue":"Bell Centre"
+      }, 
+      "8":{
+            "abbreviation":"OTT", 
+            "city":"Ottawa", 
+            "divisionId":17, 
+            "location":"Ottawa", 
+            "name":"Ottawa Senators", 
+            "teamId":9, 
+            "venue":"Canadian Tire Centre"
+      }, 
+      "9":{
+            "abbreviation":"TOR", 
+            "city":"Toronto", 
+            "divisionId":17, 
+            "location":"Toronto", 
+            "name":"Toronto Maple Leafs", 
+            "teamId":10, 
+            "venue":"Scotiabank Arena"
+      }, 
+      "10":{
+            "abbreviation":"CAR", 
+            "city":"Raleigh", 
+            "divisionId":18, 
+            "location":"Carolina", 
+            "name":"Carolina Hurricanes", 
+            "teamId":12, 
+            "venue":"PNC Arena"
+      }, 
+      "11":{
+            "abbreviation":"FLA", 
+            "city":"Sunrise", 
+            "divisionId":17, 
+            "location":"Florida", 
+            "name":"Florida Panthers", 
+            "teamId":13, 
+            "venue":"FLA Live Arena"
+      }, 
+      "12":{
+            "abbreviation":"TBL", 
+            "city":"Tampa", 
+            "divisionId":17, 
+            "location":"Tampa Bay", 
+            "name":"Tampa Bay Lightning", 
+            "teamId":14, 
+            "venue":"AMALIE Arena"
+      }, 
+      "13":{
+            "abbreviation":"WSH", 
+            "city":"Washington", 
+            "divisionId":18, 
+            "location":"Washington", 
+            "name":"Washington Capitals", 
+            "teamId":15, 
+            "venue":"Capital One Arena"
+      }, 
+      "14":{
+            "abbreviation":"CHI", 
+            "city":"Chicago", 
+            "divisionId":16, 
+            "location":"Chicago", 
+            "name":"Chicago Blackhawks", 
+            "teamId":16, 
+            "venue":"United Center"
+      }, 
+      "15":{
+            "abbreviation":"DET", 
+            "city":"Detroit", 
+            "divisionId":17, 
+            "location":"Detroit", 
+            "name":"Detroit Red Wings", 
+            "teamId":17, 
+            "venue":"Little Caesars Arena"
+      }, 
+      "16":{
+            "abbreviation":"NSH", 
+            "city":"Nashville", 
+            "divisionId":16, 
+            "location":"Nashville", 
+            "name":"Nashville Predators", 
+            "teamId":18, 
+            "venue":"Bridgestone Arena"
+      }, 
+      "17":{
+            "abbreviation":"STL", 
+            "city":"St. Louis", 
+            "divisionId":16, 
+            "location":"St. Louis", 
+            "name":"St. Louis Blues", 
+            "teamId":19, 
+            "venue":"Enterprise Center"
+      }, 
+      "18":{
+            "abbreviation":"CGY", 
+            "city":"Calgary", 
+            "divisionId":15, 
+            "location":"Calgary", 
+            "name":"Calgary Flames", 
+            "teamId":20, 
+            "venue":"Scotiabank Saddledome"
+      }, 
+      "19":{
+            "abbreviation":"COL", 
+            "city":"Denver", 
+            "divisionId":16, 
+            "location":"Colorado", 
+            "name":"Colorado Avalanche", 
+            "teamId":21, 
+            "venue":"Ball Arena"
+      }, 
+      "20":{
+            "abbreviation":"EDM", 
+            "city":"Edmonton", 
+            "divisionId":15, 
+            "location":"Edmonton", 
+            "name":"Edmonton Oilers", 
+            "teamId":22, 
+            "venue":"Rogers Place"
+      }, 
+      "21":{
+            "abbreviation":"VAN", 
+            "city":"Vancouver", 
+            "divisionId":15, 
+            "location":"Vancouver", 
+            "name":"Vancouver Canucks", 
+            "teamId":23, 
+            "venue":"Rogers Arena"
+      }, 
+      "22":{
+            "abbreviation":"ANA", 
+            "city":"Anaheim", 
+            "divisionId":15, 
+            "location":"Anaheim", 
+            "name":"Anaheim Ducks", 
+            "teamId":24, 
+            "venue":"Honda Center"
+      }, 
+      "23":{
+            "abbreviation":"DAL", 
+            "city":"Dallas", 
+            "divisionId":16, 
+            "location":"Dallas", 
+            "name":"Dallas Stars", 
+            "teamId":25, 
+            "venue":"American Airlines Center"
+      }, 
+      "24":{
+            "abbreviation":"LAK", 
+            "city":"Los Angeles", 
+            "divisionId":15, 
+            "location":"Los Angeles", 
+            "name":"Los Angeles Kings", 
+            "teamId":26, 
+            "venue":"Crypto.com Arena"
+      }, 
+      "25":{
+            "abbreviation":"SJS", 
+            "city":"San Jose", 
+            "divisionId":15, 
+            "location":"San Jose", 
+            "name":"San Jose Sharks", 
+            "teamId":28, 
+            "venue":"SAP Center at San Jose"
+      }, 
+      "26":{
+            "abbreviation":"CBJ", 
+            "city":"Columbus", 
+            "divisionId":18, 
+            "location":"Columbus", 
+            "name":"Columbus Blue Jackets", 
+            "teamId":29, 
+            "venue":"Nationwide Arena"
+      }, 
+      "27":{
+            "abbreviation":"MIN", 
+            "city":"St. Paul", 
+            "divisionId":16, 
+            "location":"Minnesota", 
+            "name":"Minnesota Wild", 
+            "teamId":30, 
+            "venue":"Xcel Energy Center"
+      }, 
+      "28":{
+            "abbreviation":"WPG", 
+            "city":"Winnipeg", 
+            "divisionId":16, 
+            "location":"Winnipeg", 
+            "name":"Winnipeg Jets", 
+            "teamId":52, 
+            "venue":"Canada Life Centre"
+      }, 
+      "29":{
+            "abbreviation":"ARI", 
+            "city":"Tempe", 
+            "divisionId":16, 
+            "location":"Arizona", 
+            "name":"Arizona Coyotes", 
+            "teamId":53, 
+            "venue":"ASU Multi-Purpose Arena"
+      }, 
+      "30":{
+            "abbreviation":"VGK", 
+            "city":"Las Vegas", 
+            "divisionId":15, 
+            "location":"Vegas", 
+            "name":"Vegas Golden Knights", 
+            "teamId":54, 
+            "venue":"T-Mobile Arena"
+      }, 
+      "31":{
+            "abbreviation":"SEA", 
+            "city":"Seattle", 
+            "divisionId":15, 
+            "location":"Seattle", 
+            "name":"Seattle Kraken", 
+            "teamId":55, 
+            "venue":"Climate Pledge Arena"
+      }
+}
