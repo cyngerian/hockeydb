@@ -40,7 +40,7 @@ def create_tables():
         )
         """,
         """
-        CREATE TABLE nhldb.players 
+        CREATE TABLE IF NOT EXISTS nhldb.players 
         (
             playerID integer NOT NULL,
             nameLast character varying(35) NOT NULL,
