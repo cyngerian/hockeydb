@@ -1,0 +1,16 @@
+{
+      "0":{
+            "abbreviation":"E", 
+            "active":true, 
+            "id":6, 
+            "name":"Eastern", 
+            "shortName":"East"
+      }, 
+      "1":{
+            "abbreviation":"W", 
+            "active":true, 
+            "id":5, 
+            "name":"Western", 
+            "shortName":"West"
+      }
+}
