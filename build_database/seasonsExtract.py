@@ -12,4 +12,14 @@ while seasonsStart < seasonsEnd:
     seasonList.append(int(seasonStr))
     seasonsStart += 1
 
-#print(seasonList)
+urlList = []
+for season in seasonList:
+    urlList.append(startUrl +str(season))
+# print(urlList)
+
+seasons = {}
+for url in urlList:
+    response = requests.get(url)
+    seasonsJson = response.json()
+    data = json.dumps(seasonsJson)
+    seasonsData = json.loads(data)
