@@ -15,11 +15,38 @@ while seasonsStart < seasonsEnd:
 urlList = []
 for season in seasonList:
     urlList.append(startUrl +str(season))
-# print(urlList)
+
+urlList.pop(37) # no 20042005 season
 
 seasons = {}
+i = 0
 for url in urlList:
     response = requests.get(url)
     seasonsJson = response.json()
     data = json.dumps(seasonsJson)
-    seasonsData = json.loads(data)
+    seasonData = json.loads(data)
+
+    seasonId = seasonData['seasons'][0]['seasonId']
+    seasonStartRegular = seasonData['seasons'][0]['regularSeasonStartDate']
+    seasonEndRegular = seasonData['seasons'][0]['regularSeasonEndDate']
+    seasonEndPost = seasonData['seasons'][0]['seasonEndDate']
+    numberOfGames = seasonData['seasons'][0]['numberOfGames']
+
+    seasonTable = {
+                  'seasonId': seasonId,
+                  'seasonStartRegular': seasonStartRegular,
+                  'seasonEndRegular': seasonEndRegular,
+                  'seasonEndPost': seasonEndPost,
+                  'numberOfGames': numberOfGames
+                  }
+
+    seasons.update({i: seasonTable})
+    i += 1
+
+seasonsOutput = json.dumps(seasons, indent = 6,  separators = (", ",":"), sort_keys = True)
+
+seasonsOutputJson = 'seasons.json'
+
+f = open(seasonsOutputJson, 'w') #use 'a' to append
+f.write(seasonsOutput)
+f.close()
