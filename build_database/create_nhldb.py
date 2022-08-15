@@ -65,7 +65,8 @@ def create_tables():
             seasonEndRegular date NOT NULL,
             seasonStartPost date NOT NULL,
             seasonEndPost date NOT NULL,
-            seasonName character varying(15) NOT NULL,
+            numberOfGames integer NOT NULL,
+            tiesInUse boolean NOT NULL,
             PRIMARY KEY (seasonID)
         )
         """,
