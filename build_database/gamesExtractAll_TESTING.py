@@ -19,7 +19,10 @@ for game in gameList:
 
 games = {}
 gameResults = {}
+gamePlayerStats = {}
 gamePlayerList = []
+awayPlayerStatsTable = {}
+
 i = 0
 for url in urlList:
     response = requests.get(url)
@@ -38,6 +41,7 @@ for url in urlList:
     awayPlayers = gameData['liveData']['boxscore']['teams']['away']['players']
     awayPlayerList = []
     awayPlayerStats = {}
+    j = 0
     for player in awayPlayers:
         playerIdList = list(awayPlayers)
 
@@ -50,6 +54,7 @@ for url in urlList:
             awaySkaterStats = awayPlayers[Id]['stats']['skaterStats']
             awayPlayerStats = {
                         'gameId': gameId,
+                        'team': gameData['liveData']['boxscore']['teams']['away']['team']['id'],
                         'playerId': awayPlayerId,
                         'goals': awaySkaterStats['goals'],
                         'assists': awaySkaterStats['assists'],
@@ -63,7 +68,11 @@ for url in urlList:
                         'faceoffsTaken': awaySkaterStats['faceoffTaken'],
                         'faceoffsWon': awaySkaterStats['faceOffWins']
                         }
+                
             print(awayPlayerStats)
+            awayPlayerStatsTable.update({j: awayPlayerStats})
+            j += 1
+    print(awayPlayerStatsTable)
 
 
     for player in awayPlayerList:
@@ -80,11 +89,35 @@ for url in urlList:
         homePlayerId = homePlayers[Id]['person']['id']
         homePlayerList.append(homePlayerId)
 
+        if 'skaterStats' in homePlayers[Id]['stats']:
+            homeSkaterStats = homePlayers[Id]['stats']['skaterStats']
+            homePlayerStats = {
+                        'gameId': gameId,
+                        'team': gameData['liveData']['boxscore']['teams']['away']['team']['id'],
+                        'playerId': homePlayerId,
+                        'goals': homeSkaterStats['goals'],
+                        'assists': homeSkaterStats['assists'],
+                        'hits': homeSkaterStats['hits'],
+                        'shotsOnGoal': homeSkaterStats['shots'],
+                        'penaltyMin': homeSkaterStats['penaltyMinutes'],
+                        'blocks': homeSkaterStats['blocked'],
+                        'timeOnIce': homeSkaterStats['timeOnIce'],
+                        'powerPlayTOI': homeSkaterStats['powerPlayTimeOnIce'],
+                        'penaltyKillTOI': homeSkaterStats['shortHandedTimeOnIce'],
+                        'faceoffsTaken': homeSkaterStats['faceoffTaken'],
+                        'faceoffsWon': homeSkaterStats['faceOffWins']
+                        }
+
     for player in homePlayerList:
         if player not in gamePlayerList:
             gamePlayerList.append(player)
 
+    #print(awayPlayerStats)
 
+    #gamePlayerStatsTable = awayPlayerStats.update(homePlayerStats)
+    #print(gamePlayerStatsTable)
+
+    #gamePlayerStats.update({i: gamePlayerStatsTable})
     i += 1
 
-print(gamePlayerList)
+#print(awayPlayerStats)
