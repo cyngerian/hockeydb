@@ -42,14 +42,12 @@ for url in urlList:
     awayPlayerList = []
     awayPlayerStats = {}
     j = 0
-    for player in awayPlayers:
-        playerIdList = list(awayPlayers)
+    awayPlayerIdList = list(awayPlayers)
 
-    for Id in playerIdList:
+    for Id in awayPlayerIdList:
         awayPlayerId = awayPlayers[Id]['person']['id']
         awayPlayerList.append(awayPlayerId)
-        
-
+    
         if 'skaterStats' in awayPlayers[Id]['stats']:
             awaySkaterStats = awayPlayers[Id]['stats']['skaterStats']
             awayPlayerStats = {
@@ -69,10 +67,11 @@ for url in urlList:
                         'faceoffsWon': awaySkaterStats['faceOffWins']
                         }
                 
-            print(awayPlayerStats)
-            awayPlayerStatsTable.update({j: awayPlayerStats})
-            j += 1
-    print(awayPlayerStatsTable)
+        print(awayPlayerStats)
+        awayPlayerStatsTable.update({'awayPlayerStats': awayPlayerStats})
+        print(j)
+        j += 1
+        print(awayPlayerStatsTable)
 
 
     for player in awayPlayerList:
@@ -82,10 +81,9 @@ for url in urlList:
     # home team player stats
     homePlayers = gameData['liveData']['boxscore']['teams']['home']['players']
     homePlayerList = []
-    for player in homePlayers:
-        playerIdList = list(homePlayers)
+    homePlayerIdList = list(homePlayers)
 
-    for Id in playerIdList:
+    for Id in homePlayerIdList:
         homePlayerId = homePlayers[Id]['person']['id']
         homePlayerList.append(homePlayerId)
 
