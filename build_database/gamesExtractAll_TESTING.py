@@ -9,11 +9,9 @@ game = gameID
 gameList = []
 
 
-while game < 202102005: # max number of games per 32 team season
+while game < 2021020004: # max number of games per 32 team season
     gameList.append(game)
     game += 1
-
-print(gameList)
 
 urlList = []
 for game in gameList:
@@ -23,9 +21,7 @@ games = {}
 gameResults = {}
 gamePlayerStats = {}
 gamePlayerList = []
-awayPlayerStatsTable = {}
-
-print(urlList)
+playerStatsTable = {}
 
 i = 0
 for url in urlList:
@@ -45,13 +41,8 @@ for url in urlList:
     awayPlayers = gameData['liveData']['boxscore']['teams']['away']['players']
     awayPlayerList = []
     awayPlayerStats = {}
-    j = 0
-
-    print(list(awayPlayers))
-
     awayPlayerIdList = list(awayPlayers)
-    print(awayPlayerIdList)
-
+    
     for Id in awayPlayerIdList:
         awayPlayerId = awayPlayers[Id]['person']['id']
         awayPlayerList.append(awayPlayerId)
@@ -74,8 +65,6 @@ for url in urlList:
                         'faceoffsTaken': awaySkaterStats['faceoffTaken'],
                         'faceoffsWon': awaySkaterStats['faceOffWins']
                         }
-            awayPlayerStatsTable.update({gameId: awayPlayerStats})
-
         elif 'goalieStats' in awayPlayers[Id]['stats']:
             awayGoalieStats = awayPlayers[Id]['stats']['goalieStats']
             awayPlayerStats = {
@@ -92,24 +81,12 @@ for url in urlList:
                         'penaltyMin': awayGoalieStats['pim'],
                         'decision': awayGoalieStats['decision']
                         }
-            awayPlayerStatsTable.update({gameId: awayPlayerStats})
-
         else: awayPlayerStats = {}
 
-        print(awayPlayerStatsTable)
+        playerStatsTable.update({i: awayPlayerStats})
+        i += 1
 
-                
-        #print(awayPlayerStats)
-        
-    
-        print(j)
-        j += 1
-    gamePlayerStats.update({i: awayPlayerStatsTable})
-#print(awayPlayerStatsTable)
-print(gamePlayerStats)
-
-
-
+#print(playerStatsTable)
 
     for player in awayPlayerList:
         if player not in gamePlayerList:
@@ -118,6 +95,7 @@ print(gamePlayerStats)
     # home team player stats
     homePlayers = gameData['liveData']['boxscore']['teams']['home']['players']
     homePlayerList = []
+    homePlayerStats = {}
     homePlayerIdList = list(homePlayers)
 
     for Id in homePlayerIdList:
@@ -128,7 +106,7 @@ print(gamePlayerStats)
             homeSkaterStats = homePlayers[Id]['stats']['skaterStats']
             homePlayerStats = {
                         'gameId': gameId,
-                        'team': gameData['liveData']['boxscore']['teams']['away']['team']['id'],
+                        'team': gameData['liveData']['boxscore']['teams']['home']['team']['id'],
                         'playerId': homePlayerId,
                         'goals': homeSkaterStats['goals'],
                         'assists': homeSkaterStats['assists'],
@@ -142,6 +120,26 @@ print(gamePlayerStats)
                         'faceoffsTaken': homeSkaterStats['faceoffTaken'],
                         'faceoffsWon': homeSkaterStats['faceOffWins']
                         }
+        elif 'goalieStats' in homePlayers[Id]['stats']:
+            homeGoalieStats = homePlayers[Id]['stats']['goalieStats']
+            homePlayerStats = {
+                        'gameId': gameId,
+                        'team': gameData['liveData']['boxscore']['teams']['home']['team']['id'],
+                        'playerId': homePlayerId,
+                        'goals': homeGoalieStats['goals'],
+                        'assists': homeGoalieStats['assists'],
+                        'shotsFaced': homeGoalieStats['shots'],
+                        'saves': homeGoalieStats['saves'],
+                        'powerPlayShotsFaced': homeGoalieStats['powerPlayShotsAgainst'],
+                        'powerplaySaves': homeGoalieStats['powerPlaySaves'],
+                        'timeOnIce': homeGoalieStats['timeOnIce'],
+                        'penaltyMin': homeGoalieStats['pim'],
+                        'decision': homeGoalieStats['decision']
+                        }
+        else: homePlayerStats = {}
+
+        playerStatsTable.update({i: homePlayerStats})
+        i += 1
 
     for player in homePlayerList:
         if player not in gamePlayerList:
@@ -153,6 +151,6 @@ print(gamePlayerStats)
     #print(gamePlayerStatsTable)
 
     #gamePlayerStats.update({i: gamePlayerStatsTable})
-    i += 1
 
-print(awayPlayerStats)
+
+print(playerStatsTable)
