@@ -9,9 +9,11 @@ game = gameID
 gameList = []
 
 
-while game < 2021020010: # max number of games per 32 team season
+while game < 202102005: # max number of games per 32 team season
     gameList.append(game)
     game += 1
+
+print(gameList)
 
 urlList = []
 for game in gameList:
@@ -22,6 +24,8 @@ gameResults = {}
 gamePlayerStats = {}
 gamePlayerList = []
 awayPlayerStatsTable = {}
+
+print(urlList)
 
 i = 0
 for url in urlList:
@@ -42,7 +46,11 @@ for url in urlList:
     awayPlayerList = []
     awayPlayerStats = {}
     j = 0
+
+    print(list(awayPlayers))
+
     awayPlayerIdList = list(awayPlayers)
+    print(awayPlayerIdList)
 
     for Id in awayPlayerIdList:
         awayPlayerId = awayPlayers[Id]['person']['id']
@@ -66,12 +74,41 @@ for url in urlList:
                         'faceoffsTaken': awaySkaterStats['faceoffTaken'],
                         'faceoffsWon': awaySkaterStats['faceOffWins']
                         }
+            awayPlayerStatsTable.update({gameId: awayPlayerStats})
+
+        elif 'goalieStats' in awayPlayers[Id]['stats']:
+            awayGoalieStats = awayPlayers[Id]['stats']['goalieStats']
+            awayPlayerStats = {
+                        'gameId': gameId,
+                        'team': gameData['liveData']['boxscore']['teams']['away']['team']['id'],
+                        'playerId': awayPlayerId,
+                        'goals': awayGoalieStats['goals'],
+                        'assists': awayGoalieStats['assists'],
+                        'shotsFaced': awayGoalieStats['shots'],
+                        'saves': awayGoalieStats['saves'],
+                        'powerPlayShotsFaced': awayGoalieStats['powerPlayShotsAgainst'],
+                        'powerplaySaves': awayGoalieStats['powerPlaySaves'],
+                        'timeOnIce': awayGoalieStats['timeOnIce'],
+                        'penaltyMin': awayGoalieStats['pim'],
+                        'decision': awayGoalieStats['decision']
+                        }
+            awayPlayerStatsTable.update({gameId: awayPlayerStats})
+
+        else: awayPlayerStats = {}
+
+        print(awayPlayerStatsTable)
+
                 
-        print(awayPlayerStats)
-        awayPlayerStatsTable.update({'awayPlayerStats': awayPlayerStats})
+        #print(awayPlayerStats)
+        
+    
         print(j)
         j += 1
-        print(awayPlayerStatsTable)
+    gamePlayerStats.update({i: awayPlayerStatsTable})
+#print(awayPlayerStatsTable)
+print(gamePlayerStats)
+
+
 
 
     for player in awayPlayerList:
@@ -118,4 +155,4 @@ for url in urlList:
     #gamePlayerStats.update({i: gamePlayerStatsTable})
     i += 1
 
-#print(awayPlayerStats)
+print(awayPlayerStats)

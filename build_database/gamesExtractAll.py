@@ -8,7 +8,7 @@ gameID = 2021020001 # first game of regular season
 game = gameID
 gameList = []
 
-
+print(gameList)
 while game < 2021021312: # max number of games per 32 team season
     gameList.append(game)
     game += 1
