@@ -1,2 +1,5 @@
 .venv/
+*.json
+*.csv
+*_OLD.*
 database.ini
