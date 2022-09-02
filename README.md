@@ -20,5 +20,6 @@ building a hockey stats database while learning python and postgres. eventually 
 5. players
 6. ~~games~~
 7. ~~gamesResults~~
-8. gamePlayerStats
-9. seasons
+8. gameskaterStats
+9. gameGoalieStats
+10. seasons
