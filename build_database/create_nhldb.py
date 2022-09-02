@@ -96,21 +96,48 @@ def create_tables():
         )
         """,
         """ 
-        CREATE TABLE IF NOT EXISTS nhldb.gamePlayerStats
+        CREATE TABLE IF NOT EXISTS nhldb.gameSkaterStats
         (
             gameID integer NOT NULL,
             playerID integer NOT NULL,
+            teamID integer NOT NULL,
             goals integer NOT NULL,
+            goalsPP integer NOT NULL,
+            goalsPK integer NOT NULL,
             assists integer NOT NULL,
+            assistsPP integer NOT NULL,
+            assistsPK integer NOT NULL,
             hits integer NOT NULL,
             shotsOnGoal integer NOT NULL,
-            penaltyMinutes integer NOT NULL,
+            penaltyMin integer NOT NULL,
             blocks integer NOT NULL,
             timeOnIce time without time zone NOT NULL,
-            timeOnIcePowerPlay time without time zone NOT NULL,
-            timeOnIcePenaltyKill time without time zone NOT NULL,
+            timeOnIcePP time without time zone NOT NULL,
+            timeOnIcePK time without time zone NOT NULL,
             faceoffsTaken integer NOT NULL,
             faceoffsWon integer NOT NULL,
+            takeaways integer NOT NULL,
+            giveaways integer NOT NULL,
+            PRIMARY KEY (gameID, playerID)    
+        )
+        """,
+        """
+        CREATE TABLE IF NOT EXISTS nhldb.gameGoalieStats
+        (
+            gameID integer NOT NULL,
+            playerID integer NOT NULL,
+            teamID integer NOT NULL,
+            goals integer NOT NULL,
+            assists integer NOT NULL,
+            penaltyMin integer NOT NULL,
+            shotsFaced integer NOT NULL,
+            shotsFacedPP integer NOT NULL,
+            shotsFacedPK integer NOT NULL,
+            saves integer NOT NULL,
+            savesPP integer NOT NULL,
+            savesPK integer NOT NULL,
+            timeOnIce time without time zone NOT NULL,
+            decision character varying(1) NOT NULL,
             PRIMARY KEY (gameID, playerID)    
         )
         """,

@@ -1,5 +1,17 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# virtual env
 .venv/
+
+# data extracts
 *.json
 *.csv
+
+# scratch files
 *_OLD.*
+_scratch.txt
+
+# 
 database.ini

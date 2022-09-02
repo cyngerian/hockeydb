@@ -5,6 +5,7 @@ from divisionsLoad import divisionsLoad
 from teamsLoad import teamsLoad
 from gamesLoad import gamesLoad
 from gameResultsLoad import gameResultsLoad
+from create_nhldb_views import create_views
 
 
 def rebuild_nhldb():
@@ -15,6 +16,8 @@ def rebuild_nhldb():
     teamsLoad()
     gamesLoad()
     gameResultsLoad()
+
+    create_views()
 
 if __name__ == '__main__':
     rebuild_nhldb()

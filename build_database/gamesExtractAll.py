@@ -80,37 +80,45 @@ for url in urlList:
         if 'skaterStats' in awayPlayers[Id]['stats']:
             awaySkaterStats = awayPlayers[Id]['stats']['skaterStats']
             awayPlayerStats = {
-                        'gameId': gameId,
-                        'team': gameData['liveData']['boxscore']['teams']['away']['team']['id'],
-                        'playerId': awayPlayerId,
-                        'goals': awaySkaterStats['goals'],
-                        'assists': awaySkaterStats['assists'],
-                        'hits': awaySkaterStats['hits'],
-                        'shotsOnGoal': awaySkaterStats['shots'],
-                        'penaltyMin': awaySkaterStats['penaltyMinutes'],
-                        'blocks': awaySkaterStats['blocked'],
-                        'timeOnIce': awaySkaterStats['timeOnIce'],
-                        'powerPlayTOI': awaySkaterStats['powerPlayTimeOnIce'],
-                        'penaltyKillTOI': awaySkaterStats['shortHandedTimeOnIce'],
-                        'faceoffsTaken': awaySkaterStats['faceoffTaken'],
-                        'faceoffsWon': awaySkaterStats['faceOffWins']
-                        }
+                            'gameId': gameId,
+                            'playerId': awayPlayerId,
+                            'team': gameData['liveData']['boxscore']['teams']['away']['team']['id'],
+                            'goals': awaySkaterStats['goals'],
+                            'goalsPP': awaySkaterStats['powerPlayGoals'],
+                            'goalsPK': awaySkaterStats['shortHandedGoals'],
+                            'assists': awaySkaterStats['assists'],
+                            'assistsPP': awaySkaterStats['powerPlayAssists'],
+                            'assistsPK': awaySkaterStats['shortHandedAssists'],
+                            'hits': awaySkaterStats['hits'],
+                            'shotsOnGoal': awaySkaterStats['shots'],
+                            'penaltyMin': awaySkaterStats['penaltyMinutes'],
+                            'blocks': awaySkaterStats['blocked'],
+                            'timeOnIce': awaySkaterStats['timeOnIce'],
+                            'timeOnIcePP': awaySkaterStats['powerPlayTimeOnIce'],
+                            'timeOnIcePK': awaySkaterStats['shortHandedTimeOnIce'],
+                            'faceoffsTaken': awaySkaterStats['faceoffTaken'],
+                            'faceoffsWon': awaySkaterStats['faceOffWins'],
+                            'takeaways': awaySkaterStats['takeaways'],
+                            'giveaways': awaySkaterStats['giveaways']
+                            }
         elif 'goalieStats' in awayPlayers[Id]['stats']:
             awayGoalieStats = awayPlayers[Id]['stats']['goalieStats']
             awayPlayerStats = {
-                        'gameId': gameId,
-                        'team': gameData['liveData']['boxscore']['teams']['away']['team']['id'],
-                        'playerId': awayPlayerId,
-                        'goals': awayGoalieStats['goals'],
-                        'assists': awayGoalieStats['assists'],
-                        'shotsFaced': awayGoalieStats['shots'],
-                        'saves': awayGoalieStats['saves'],
-                        'powerPlayShotsFaced': awayGoalieStats['powerPlayShotsAgainst'],
-                        'powerplaySaves': awayGoalieStats['powerPlaySaves'],
-                        'timeOnIce': awayGoalieStats['timeOnIce'],
-                        'penaltyMin': awayGoalieStats['pim'],
-                        'decision': awayGoalieStats['decision']
-                        }
+                            'gameId': gameId,
+                            'playerId': awayPlayerId,
+                            'team': gameData['liveData']['boxscore']['teams']['away']['team']['id'],
+                            'goals': awayGoalieStats['goals'],
+                            'assists': awayGoalieStats['assists'],
+                            'penaltyMin': awayGoalieStats['pim'],
+                            'shotsFaced': awayGoalieStats['shots'],
+                            'shotsFacedPP': awayGoalieStats['powerPlayShotsAgainst'],
+                            'shotsFacedPK': awayGoalieStats['shortHandedShotsAgainst'],
+                            'saves': awayGoalieStats['saves'],
+                            'savesPP': awayGoalieStats['powerPlaySaves'],
+                            'savesPK': awayGoalieStats['shortHandedSaves'],
+                            'timeOnIce': awayGoalieStats['timeOnIce'],
+                            'decision': awayGoalieStats['decision']
+                            }
         else: awayPlayerStats = {}
 
         playerStatsTable.update({k: awayPlayerStats})
@@ -133,37 +141,45 @@ for url in urlList:
         if 'skaterStats' in homePlayers[Id]['stats']:
             homeSkaterStats = homePlayers[Id]['stats']['skaterStats']
             homePlayerStats = {
-                        'gameId': gameId,
-                        'team': gameData['liveData']['boxscore']['teams']['home']['team']['id'],
-                        'playerId': homePlayerId,
-                        'goals': homeSkaterStats['goals'],
-                        'assists': homeSkaterStats['assists'],
-                        'hits': homeSkaterStats['hits'],
-                        'shotsOnGoal': homeSkaterStats['shots'],
-                        'penaltyMin': homeSkaterStats['penaltyMinutes'],
-                        'blocks': homeSkaterStats['blocked'],
-                        'timeOnIce': homeSkaterStats['timeOnIce'],
-                        'powerPlayTOI': homeSkaterStats['powerPlayTimeOnIce'],
-                        'penaltyKillTOI': homeSkaterStats['shortHandedTimeOnIce'],
-                        'faceoffsTaken': homeSkaterStats['faceoffTaken'],
-                        'faceoffsWon': homeSkaterStats['faceOffWins']
-                        }
+                            'gameId': gameId,
+                            'playerId': homePlayerId,
+                            'team': gameData['liveData']['boxscore']['teams']['home']['team']['id'],
+                            'goals': homeSkaterStats['goals'],
+                            'goalsPP': homeSkaterStats['powerPlayGoals'],
+                            'goalsPK': homeSkaterStats['shortHandedGoals'],
+                            'assists': homeSkaterStats['assists'],
+                            'assistsPP': homeSkaterStats['powerPlayAssists'],
+                            'assistsPK': homeSkaterStats['shortHandedAssists'],
+                            'hits': homeSkaterStats['hits'],
+                            'shotsOnGoal': homeSkaterStats['shots'],
+                            'penaltyMin': homeSkaterStats['penaltyMinutes'],
+                            'blocks': homeSkaterStats['blocked'],
+                            'timeOnIce': homeSkaterStats['timeOnIce'],
+                            'timeOnIcePP': homeSkaterStats['powerPlayTimeOnIce'],
+                            'timeOnIcePK': homeSkaterStats['shortHandedTimeOnIce'],
+                            'faceoffsTaken': homeSkaterStats['faceoffTaken'],
+                            'faceoffsWon': homeSkaterStats['faceOffWins'],
+                            'takeaways': homeSkaterStats['takeaways'],
+                            'giveaways': homeSkaterStats['giveaways']
+                            }
         elif 'goalieStats' in homePlayers[Id]['stats']:
             homeGoalieStats = homePlayers[Id]['stats']['goalieStats']
             homePlayerStats = {
-                        'gameId': gameId,
-                        'team': gameData['liveData']['boxscore']['teams']['home']['team']['id'],
-                        'playerId': homePlayerId,
-                        'goals': homeGoalieStats['goals'],
-                        'assists': homeGoalieStats['assists'],
-                        'shotsFaced': homeGoalieStats['shots'],
-                        'saves': homeGoalieStats['saves'],
-                        'powerPlayShotsFaced': homeGoalieStats['powerPlayShotsAgainst'],
-                        'powerplaySaves': homeGoalieStats['powerPlaySaves'],
-                        'timeOnIce': homeGoalieStats['timeOnIce'],
-                        'penaltyMin': homeGoalieStats['pim'],
-                        'decision': homeGoalieStats['decision']
-                        }
+                            'gameId': gameId,
+                            'playerId': homePlayerId,
+                            'team': gameData['liveData']['boxscore']['teams']['home']['team']['id'],
+                            'goals': homeGoalieStats['goals'],
+                            'assists': homeGoalieStats['assists'],
+                            'penaltyMin': homeGoalieStats['pim'],
+                            'shotsFaced': homeGoalieStats['shots'],
+                            'shotsFacedPP': homeGoalieStats['powerPlayShotsAgainst'],
+                            'shotsFacedPK': homeGoalieStats['shortHandedShotsAgainst'],
+                            'saves': homeGoalieStats['saves'],
+                            'savesPP': homeGoalieStats['powerPlaySaves'],
+                            'savesPK': homeGoalieStats['shortHandedSaves'],
+                            'timeOnIce': homeGoalieStats['timeOnIce'],
+                            'decision': homeGoalieStats['decision']
+                            }
         else: homePlayerStats = {}
 
         playerStatsTable.update({k: homePlayerStats})

@@ -10,7 +10,8 @@ def drop_tables():
               nhldb.teams
             , nhldb.conferences   
             , nhldb.divisions
-            , nhldb.gameplayerstats
+            , nhldb.gameskaterstats
+            , nhldb.gamegoaliestats
             , nhldb.gameresults
             , nhldb.games
             , nhldb.players
