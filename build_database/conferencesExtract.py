@@ -35,7 +35,6 @@ for confId in range(len(confData['conferences'])):
     #print(eventIdx)
 
 output = json.dumps(conferences, indent = 6,  separators = (", ",":"), sort_keys = True)
-print(output)
 
 outputJson = 'conferences.json'
 f = open(outputJson, 'w') #use 'a' to append
