@@ -47,7 +47,7 @@ def create_tables():
             nameFirst character varying(35) NOT NULL,
             primaryNumber integer NULL,
             birthDate date NOT NULL,
-            birthCity character varying(25) NOT NULL,
+            birthCity character varying(75) NOT NULL,
             birthCountry character varying(5) NOT NULL,
             nationality character varying(5) NOT NULL,
             height character varying(10) NOT NULL,

@@ -26,39 +26,41 @@ for url in urlList:
     playerData = urlData['people'][0]
     print(playerData['id'])
 
+    nameFirst = playerData['firstName']
+    nameLast = playerData['lastName']
     if 'primaryNumber' in playerData:
-        player = {
-                'id': playerData['id'],
-                'namefirst': playerData['firstName'],
-                'nameLast': playerData['lastName'],
-                'primaryNumber': playerData['primaryNumber'],
-                'birthdate': playerData['birthDate'],
-                'birthCity ': playerData['birthCity'],
-                'birthCountry': playerData['birthCountry'],
-                'nationality': playerData['nationality'],
-                'height': playerData['height'],
-                'weight': playerData['weight'],
-                'shootsCatches': playerData['shootsCatches'],
-                'position': playerData['primaryPosition']['abbreviation'],
-                'active': playerData['active'],
-                }
-        
+        primaryNumber = playerData['primaryNumber']
+    else: 
+        primaryNumber = '100'
+    birthDate = playerData['birthDate']
+    if 'birthCity' in playerData:
+        birthCity = playerData['birthCity']
     else:
-        player = {
-                'id': playerData['id'],
-                'namefirst': playerData['firstName'],
-                'nameLast': playerData['lastName'],
-                'birthdate': playerData['birthDate'],
-                'birthCity ': playerData['birthCity'],
-                'birthCountry': playerData['birthCountry'],
-                'nationality': playerData['nationality'],
-                'height': playerData['height'],
-                'weight': playerData['weight'],
-                'shootsCatches': playerData['shootsCatches'],
-                'position': playerData['primaryPosition']['abbreviation'],
-                'active': playerData['active'],
-                }
-        
+        birthCity = 'none'
+    birthCountry = playerData['birthCountry']
+    nationality = playerData['nationality']
+    height = playerData['height']
+    weight = playerData['weight']
+    shootsCatches = playerData['shootsCatches']
+    primaryPosition = playerData['primaryPosition']['abbreviation']
+    active = playerData['active']
+
+    player = {
+            'playerId': playerData['id'],
+            'nameFirst': nameFirst,
+            'nameLast': nameLast,
+            'primaryNumber': primaryNumber,
+            'birthDate': birthDate,
+            'birthCity': birthCity,
+            'birthCountry': birthCountry,
+            'nationality': nationality,
+            'height': height,
+            'weight': weight,
+            'shootsCatches': shootsCatches,
+            'primaryPosition': primaryPosition,
+            'active': active
+            }
+
     players.update({i: player})
     i += 1
     #print(eventIdx)

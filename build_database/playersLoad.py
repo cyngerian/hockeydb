@@ -1,20 +1,28 @@
-import sqlite3
 import psycopg2
 import json
 from config import config
 
 sql = """
-        INSERT INTO nhldb.gameresults (
-            gameid, 
-            hometeamscore, 
-            awayteamscore, 
-            endtype) 
-        VALUES (%s, %s, %s, %s)
+        INSERT INTO nhldb.players (
+            playerid,
+            namefirst,
+            namelast,
+            primarynumber,
+            birthdate,
+            birthcity,
+            birthcountry,
+            nationality,
+            height,
+            weight,
+            shootscatches,
+            primaryposition,
+            active)
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
       """
 
-def gameResultsLoad():
-    f = open('gameResults.json')
-    gameResultsData = json.load(f)
+def playersLoad():
+    f = open('players.json')
+    playersData = json.load(f)
     row = 0
 
     conn = None
@@ -25,12 +33,23 @@ def gameResultsLoad():
         conn = psycopg2.connect(**params)
         cur = conn.cursor()
         # create table one by one
-        for row in gameResultsData:
-            gameResults = gameResultsData[row]        
-            cur.execute(sql, (gameResults['gameId'], 
-                              gameResults['homeTeamScore'], 
-                              gameResults['awayTeamScore'], 
-                              gameResults['endType']))
+        for row in playersData:
+            players = playersData[row]  
+            print(players['playerId'])   
+            cur.execute(sql, (players['playerId'], 
+                                players['nameFirst'], 
+                                players['nameLast'],
+                                players['primaryNumber'],
+                                players['birthDate'], 
+                                players['birthCity'], 
+                                players['birthCountry'], 
+                                players['nationality'], 
+                                players['height'], 
+                                players['weight'], 
+                                players['shootsCatches'],
+                                players['primaryPosition'],    
+                                players['active']))
+
             
         # close communication with the PostgreSQL database server
         cur.close()
@@ -44,7 +63,7 @@ def gameResultsLoad():
 
 
 if __name__ == '__main__':
-    gameResultsLoad()
+    playersLoad()
 
 
 
