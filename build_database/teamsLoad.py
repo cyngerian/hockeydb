@@ -2,6 +2,17 @@ import psycopg2
 import json
 from config import config
 
+sql = """
+        INSERT INTO nhldb.teams (
+            teamid, 
+            name, 
+            abbreviation, 
+            divisionid, 
+            venue, 
+            city, 
+            location)
+        VALUES (%s, %s, %s, %s, %s, %s, %s)
+      """
 
 def teamsLoad():
     f = open('teams.json')
@@ -18,7 +29,13 @@ def teamsLoad():
         # create table one by one
         for row in teamData:
             teams = teamData[row]        
-            cur.execute("INSERT INTO nhldb.teams(teamid, name, abbreviation, divisionid, venue, city, location ) VALUES (%s, %s, %s, %s, %s, %s, %s)", (teams['teamId'], teams['name'], teams['abbreviation'], teams['divisionId'], teams['venue'], teams['city'], teams['location']))
+            cur.execute(sql, (teams['teamId'], 
+                              teams['name'], 
+                              teams['abbreviation'], 
+                              teams['divisionId'], 
+                              teams['venue'], 
+                              teams['city'], 
+                              teams['location']))
             
         # close communication with the PostgreSQL database server
         cur.close()

@@ -93,7 +93,7 @@ def create_tables():
             lastGameID integer NOT NULL,
             active boolean NOT NULL,
             stintNumber integer NOT NULL,
-            PRIMARY KEY (playerID, teamID, seasonID, stintNumber)
+            PRIMARY KEY (playerID, teamID, stintNumber)
         )
         """,
         """ 

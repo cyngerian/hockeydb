@@ -1,7 +1,16 @@
+import sqlite3
 import psycopg2
 import json
 from config import config
 
+sql = """
+        INSERT INTO nhldb.gameresults (
+            gameid, 
+            hometeamscore, 
+            awayteamscore, 
+            endtype) 
+        VALUES (%s, %s, %s, %s)
+      """
 
 def gameResultsLoad():
     f = open('gameResults.json')
@@ -18,7 +27,10 @@ def gameResultsLoad():
         # create table one by one
         for row in gameResultsData:
             gameResults = gameResultsData[row]        
-            cur.execute("INSERT INTO nhldb.gameresults(gameid, hometeamscore, awayteamscore, endtype) VALUES (%s, %s, %s, %s)", (gameResults['gameId'], gameResults['homeTeamScore'], gameResults['awayTeamScore'], gameResults['endType']))
+            cur.execute(sql, (gameResults['gameId'], 
+                              gameResults['homeTeamScore'], 
+                              gameResults['awayTeamScore'], 
+                              gameResults['endType']))
             
         # close communication with the PostgreSQL database server
         cur.close()
