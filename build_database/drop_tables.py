@@ -17,6 +17,7 @@ def drop_tables():
             , nhldb.players
             , nhldb.seasons
             , nhldb.teamsplayers
+        CASCADE
         """)
     conn = None
     try:

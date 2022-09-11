@@ -54,6 +54,7 @@ def create_tables():
             weight integer NOT NULL,
             shootsCatches character varying(1) NOT NULL,
             primaryPosition character varying(3) NOT NULL,
+            active boolean NOT NULL,
             PRIMARY KEY (playerID)
         )
         """,
