@@ -24,7 +24,6 @@ for url in urlList:
     urlData = json.loads(data)
 
     playerData = urlData['people'][0]
-    print(playerData['id'])
 
     nameFirst = playerData['firstName']
     nameLast = playerData['lastName']
