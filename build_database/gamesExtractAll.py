@@ -209,6 +209,6 @@ f = open(playerStatsOutputJson, 'w') #use 'a' to append
 f.write(playerStatsOutput)
 f.close()
 
-with open('gamePlayerList.csv', 'w') as myfile:
-    wr = csv.writer(myfile, quoting=csv.QUOTE_NONE)
+with open('gamePlayerList.csv', 'w+', newline='') as myfile:
+    wr = csv.writer(myfile, delimiter=',', quoting=csv.QUOTE_NONE)
     wr.writerow(gamePlayerList)
