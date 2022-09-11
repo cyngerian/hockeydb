@@ -17,7 +17,7 @@ building a hockey stats database while learning python and postgres. eventually 
 2. ~~divisions~~
 3. ~~teams~~
 4. teamsPlayers
-5. players
+5. ~~players~~
 6. ~~games~~
 7. ~~gamesResults~~
 8. gameskaterStats
