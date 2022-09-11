@@ -35,7 +35,6 @@ def playersLoad():
         # create table one by one
         for row in playersData:
             players = playersData[row]  
-            print(players['playerId'])   
             cur.execute(sql, (players['playerId'], 
                                 players['nameFirst'], 
                                 players['nameLast'],
