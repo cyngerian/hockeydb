@@ -21,11 +21,13 @@ games = {}
 gameResults = {}
 gamePlayerStats = {}
 gamePlayerList = []
-playerStatsTable = {}
+skaterStatsTable = {}
+goalieStatsTable = {}
 
 i = 0
 j = 0
-k = 0
+s = 0
+g = 0
 for url in urlList:
     response = requests.get(url)
     gameJson = response.json()
@@ -101,6 +103,8 @@ for url in urlList:
                             'takeaways': awaySkaterStats['takeaways'],
                             'giveaways': awaySkaterStats['giveaways']
                             }
+            skaterStatsTable.update({s: awayPlayerStats})
+            s += 1
         elif 'goalieStats' in awayPlayers[Id]['stats']:
             awayGoalieStats = awayPlayers[Id]['stats']['goalieStats']
             awayPlayerStats = {
@@ -119,10 +123,9 @@ for url in urlList:
                             'timeOnIce': awayGoalieStats['timeOnIce'],
                             'decision': awayGoalieStats['decision']
                             }
+            goalieStatsTable.update({g: awayPlayerStats})
+            g += 1
         else: awayPlayerStats = {}
-
-        playerStatsTable.update({k: awayPlayerStats})
-        k += 1
 
     for player in awayPlayerList:
         if player not in gamePlayerList:
@@ -162,6 +165,8 @@ for url in urlList:
                             'takeaways': homeSkaterStats['takeaways'],
                             'giveaways': homeSkaterStats['giveaways']
                             }
+            skaterStatsTable.update({s: awayPlayerStats})
+            s += 1
         elif 'goalieStats' in homePlayers[Id]['stats']:
             homeGoalieStats = homePlayers[Id]['stats']['goalieStats']
             homePlayerStats = {
@@ -180,10 +185,9 @@ for url in urlList:
                             'timeOnIce': homeGoalieStats['timeOnIce'],
                             'decision': homeGoalieStats['decision']
                             }
+            goalieStatsTable.update({g: awayPlayerStats})
+            g += 1
         else: homePlayerStats = {}
-
-        playerStatsTable.update({k: homePlayerStats})
-        k += 1
 
     for player in homePlayerList:
         if player not in gamePlayerList:
@@ -203,10 +207,16 @@ f = open(gameResultsOutputJson, 'w') #use 'a' to append
 f.write(gameResultsOutput)
 f.close()
 
-playerStatsOutput = json.dumps(playerStatsTable, indent = 6,  separators = (", ",":"), sort_keys = True)
-playerStatsOutputJson = 'gamePlayerStats.json'
-f = open(playerStatsOutputJson, 'w') #use 'a' to append
-f.write(playerStatsOutput)
+skaterStatsOutput = json.dumps(skaterStatsTable, indent = 6,  separators = (", ",":"), sort_keys = True)
+skaterStatsOutputJson = 'gameSkaterStats.json'
+f = open(skaterStatsOutputJson, 'w') #use 'a' to append
+f.write(skaterStatsOutput)
+f.close()
+
+goalieStatsOutput = json.dumps(goalieStatsTable, indent = 6,  separators = (", ",":"), sort_keys = True)
+goalieStatsOutputJson = 'gameGoalieStats.json'
+f = open(goalieStatsOutputJson, 'w') #use 'a' to append
+f.write(goalieStatsOutput)
 f.close()
 
 with open('gamePlayerList.csv', 'w+', newline='') as myfile:
