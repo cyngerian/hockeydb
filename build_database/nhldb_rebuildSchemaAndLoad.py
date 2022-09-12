@@ -1,24 +1,30 @@
-from drop_tables import drop_tables
-from create_nhldb import create_tables
+from nhldb_dropTables import drop_tables
+from nhldb_createSchema import create_tables
 from conferencesLoad import conferencesLoad
 from divisionsLoad import divisionsLoad
 from teamsLoad import teamsLoad
 from gamesLoad import gamesLoad
 from gameResultsLoad import gameResultsLoad
 from playersLoad import playersLoad
-from create_nhldb_views import create_views
+from nhldb_createViews import create_views
 
 
 def rebuild_nhldb():
+# drop the tables    
     drop_tables()
+
+# create the tables    
     create_tables()
+
+# load the tables    
     conferencesLoad()
     divisionsLoad()
     teamsLoad()
     gamesLoad()
     gameResultsLoad()
     playersLoad()
-
+    
+# create views
     create_views()
 
 if __name__ == '__main__':
