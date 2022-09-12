@@ -10,20 +10,20 @@ from nhldb_createViews import create_views
 
 
 def rebuild_nhldb():
-# drop the tables    
+# drop tables    
     drop_tables()
 
-# create the tables    
+# create tables    
     create_tables()
 
-# load the tables    
+# load tables    
     conferencesLoad()
     divisionsLoad()
     teamsLoad()
     gamesLoad()
     gameResultsLoad()
     playersLoad()
-    
+
 # create views
     create_views()
 
