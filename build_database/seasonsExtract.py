@@ -26,18 +26,23 @@ for url in urlList:
     data = json.dumps(seasonsJson)
     seasonData = json.loads(data)
 
-    seasonId = seasonData['seasons'][0]['seasonId']
-    seasonStartRegular = seasonData['seasons'][0]['regularSeasonStartDate']
-    seasonEndRegular = seasonData['seasons'][0]['regularSeasonEndDate']
-    seasonEndPost = seasonData['seasons'][0]['seasonEndDate']
-    numberOfGames = seasonData['seasons'][0]['numberOfGames']
+    seasonsData = seasonData['seasons'][0]
+
+    seasonId = seasonsData['seasonId']
+    seasonStartRegular = seasonsData['regularSeasonStartDate']
+    seasonEndRegular = seasonsData['regularSeasonEndDate']
+    seasonEndPost = seasonsData['seasonEndDate']
+    numberOfGames = seasonsData['numberOfGames']
+    tiesInUse = seasonsData['tiesInUse']
 
     seasonTable = {
                   'seasonId': seasonId,
                   'seasonStartRegular': seasonStartRegular,
                   'seasonEndRegular': seasonEndRegular,
+                  'seasonStartPost': seasonEndRegular,
                   'seasonEndPost': seasonEndPost,
-                  'numberOfGames': numberOfGames
+                  'numberOfGames': numberOfGames,
+                  'tiesInUse': tiesInUse
                   }
 
     seasons.update({i: seasonTable})
