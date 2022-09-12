@@ -6,6 +6,8 @@ from teamsLoad import teamsLoad
 from gamesLoad import gamesLoad
 from gameResultsLoad import gameResultsLoad
 from playersLoad import playersLoad
+from gameSkaterStatsLoad import gameSkaterStatsLoad
+from gameGoalieStatsLoad import gameGoalieStatsLoad
 from nhldb_createViews import create_views
 
 
@@ -23,6 +25,8 @@ def rebuild_nhldb():
     gamesLoad()
     gameResultsLoad()
     playersLoad()
+    gameSkaterStatsLoad()
+    gameGoalieStatsLoad()
 
 # create views
     create_views()
