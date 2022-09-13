@@ -91,7 +91,7 @@ def create_tables():
             seasonID integer NOT NULL,
             firstGameID integer NOT NULL,
             lastGameID integer NOT NULL,
-            active boolean NOT NULL,
+            gamesplayed integer NOT NULL,
             stintNumber integer NOT NULL,
             PRIMARY KEY (playerID, teamID, stintNumber)
         )

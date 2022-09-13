@@ -10,6 +10,7 @@ from playersLoad import playersLoad
 from gameSkaterStatsLoad import gameSkaterStatsLoad
 from gameGoalieStatsLoad import gameGoalieStatsLoad
 from nhldb_createViews import create_views
+from teamsPlayersCreateTable import teamsPlayersCreateTables
 
 
 def rebuild_nhldb():
@@ -40,6 +41,10 @@ def rebuild_nhldb():
     print('---game skater stats loaded into nhldb---')
     gameGoalieStatsLoad()
     print('---game goalie stats loaded into nhldb---')
+
+# create tables from imported data (should be a view?)
+    teamsPlayersCreateTables()
+    print('---teamsPlayers table created in nhldb---')
 
 # create views
     create_views()

@@ -9,7 +9,7 @@ building a hockey stats database while learning python and postgres. eventually 
         - update pgerd diagram with new table
         - split player stats extract and load into 2 processes
     - completed 2022-09-12
-2. target: 2022-10-06: complete starting 9 db tables for all seasons in modern stats era
+2. target: 2022-10-06: complete starting 10 db tables for all seasons in modern stats era
     - consider pre stats era records
 
 ### starting tables to finish:
@@ -17,10 +17,16 @@ building a hockey stats database while learning python and postgres. eventually 
 1. ~~conferences~~ 
 2. ~~divisions~~
 3. ~~teams~~
-4. teamsPlayers
+4. ~~teamsPlayers~~
 5. ~~players~~
 6. ~~games~~
 7. ~~gamesResults~~
 8. ~~gameSkaterStats~~
 9. ~~gameGoalieStats~~
-10. seasons
+10. ~~seasons~~
+
+- finished single season loads on 2022-09-12
+
+## next steps:
+
+1. extend stats beyond single season
