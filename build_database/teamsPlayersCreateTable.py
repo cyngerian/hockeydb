@@ -31,7 +31,7 @@ sql = ("""
             ) a
       """)
 
-def teamsPlayersCreateTables():
+def teamsPlayersCreateTable():
     """ creates teamsPlayers table in nhldb database"""
     conn = None
     try:
@@ -54,4 +54,4 @@ def teamsPlayersCreateTables():
 
 
 if __name__ == '__main__':
-    teamsPlayersCreateTables()
+    teamsPlayersCreateTable()
