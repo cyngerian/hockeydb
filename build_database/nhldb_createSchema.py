@@ -3,7 +3,7 @@ from config import config
 
 
 def create_tables():
-    """ create tables in the PostgreSQL database"""
+    """ create tables in the nhldb database"""
     commands = (
         """
         CREATE TABLE IF NOT EXISTS nhldb.teams (

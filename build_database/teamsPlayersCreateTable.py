@@ -32,7 +32,7 @@ sql = ("""
       """)
 
 def teamsPlayersCreateTables():
-    """ drops tables in the PostgreSQL database"""
+    """ creates teamsPlayers table in nhldb database"""
     conn = None
     try:
         # read the connection parameters

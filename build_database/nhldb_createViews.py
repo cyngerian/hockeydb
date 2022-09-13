@@ -2,7 +2,7 @@ import psycopg2
 from config import config
 
 def create_views():
-    """ create tables in the PostgreSQL database"""
+    """ create views in the nhldb database"""
     commands = (
         """
         CREATE VIEW nhldb."gameResult_scores"
