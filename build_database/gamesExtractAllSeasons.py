@@ -1,22 +1,17 @@
 import requests
 import json
-import csv
+import pandas as pd
+import time
 
-startUrl = 'https://statsapi.web.nhl.com/api/v1/game/'
-endUrl = '/feed/live'
-gameID = 2021020001 # first game of regular season
-
-game = gameID
-gameList = []
-
-while game < 2021021313: # max number of games per 32 team season
-    
-    gameList.append(game)
-    game += 1
-
+df = pd.read_csv('gameUrlList.csv')
+urlListOfLists = df.values.tolist()
 urlList = []
-for game in gameList:
-    urlList.append(startUrl +str(game) + endUrl )
+for sublist in urlListOfLists:
+    for item in sublist:
+        urlList.append(item)
+
+n = 0
+runStartTime = time.time()
 
 games = {}
 gameResults = {}
@@ -35,9 +30,12 @@ for url in urlList:
     data = json.dumps(gameJson)
     gameData = json.loads(data)
 
+    time.sleep(0.25)
+
+
     # common values
     gameId = gameData['gamePk']
-
+    print(gameId)
     # values for games
     season = gameData['gameData']['game']['season']
     dateTime = gameData['gameData']['datetime']['dateTime']
@@ -87,6 +85,8 @@ for url in urlList:
                 skaterTimeOnIce = '0' +  awaySkaterStats['timeOnIce']
             else:
                 skaterTimeOnIce = awaySkaterStats['timeOnIce']
+            
+            
 
             if len(awaySkaterStats['powerPlayTimeOnIce']) == 4:
                 timeOnIcePP = '0' +  awaySkaterStats['powerPlayTimeOnIce']
@@ -265,7 +265,10 @@ for url in urlList:
         if player not in gamePlayerList:
             gamePlayerList.append(player)
 
-    print(gameId)
+    n += 1 
+    currentTime = time.time()
+    elapsed = "%.2f" % (currentTime - runStartTime)
+    print(str(n) + '   ' + str(gameId) + '   ' + elapsed)
     
 gamesOutput = json.dumps(games, indent = 6,  separators = (", ",":"), sort_keys = True)
 gamesOutputJson = 'gamesAll.json'
@@ -294,3 +297,7 @@ f.close()
 with open('gamePlayerListAll.csv', 'w+', newline='') as myfile:
     wr = csv.writer(myfile, delimiter=',', quoting=csv.QUOTE_NONE)
     wr.writerow(gamePlayerList)
+
+df = pd.DataFrame(data={"players": gamePlayerList})
+
+df.to_csv("./gameUrlList.csv", sep=',',index=False)
