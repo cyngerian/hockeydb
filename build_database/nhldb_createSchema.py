@@ -14,6 +14,7 @@ def create_tables():
             divisionID integer NOT NULL,
             venue character varying(25) NOT NULL,
             location character varying(25) NOT NULL,
+            active boolean NOT NULL,
             PRIMARY KEY (teamID)
         )
         """,

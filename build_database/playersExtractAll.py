@@ -6,7 +6,7 @@ import csv
 startUrl = 'https://statsapi.web.nhl.com/api/v1/people/'
 urlList = []
 
-with open('gamePlayerListAll.csv') as csvfile:
+with open('gamePlayerList.csv') as csvfile:
     reader = csv.reader(csvfile)
     playerListRead = list(reader)
 

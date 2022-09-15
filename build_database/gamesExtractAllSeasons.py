@@ -32,10 +32,9 @@ for url in urlList:
 
     time.sleep(0.25)
 
-
     # common values
     gameId = gameData['gamePk']
-    print(gameId)
+
     # values for games
     season = gameData['gameData']['game']['season']
     dateTime = gameData['gameData']['datetime']['dateTime']
@@ -78,26 +77,60 @@ for url in urlList:
         awayPlayerId = awayPlayers[Id]['person']['id']
         awayPlayerList.append(awayPlayerId)
     
-        if 'skaterStats' in awayPlayers[Id]['stats']:
+        if 'skaterStats' in awayPlayers[Id]['stats']:                    
             awaySkaterStats = awayPlayers[Id]['stats']['skaterStats']
 
             if len(awaySkaterStats['timeOnIce']) == 4:
                 skaterTimeOnIce = '0' +  awaySkaterStats['timeOnIce']
             else:
                 skaterTimeOnIce = awaySkaterStats['timeOnIce']
-            
-            
 
-            if len(awaySkaterStats['powerPlayTimeOnIce']) == 4:
-                timeOnIcePP = '0' +  awaySkaterStats['powerPlayTimeOnIce']
+            if 'powerPlayTimeOnIce' in awaySkaterStats:
+                if len(awaySkaterStats['powerPlayTimeOnIce']) == 4:
+                    timeOnIcePP = '0' +  awaySkaterStats['powerPlayTimeOnIce']
+                else:
+                    timeOnIcePP = awaySkaterStats['powerPlayTimeOnIce']
+            else: 
+                timeOnIcePP = '00:00'
+
+            if 'shortHandedTimeOnIce' in awaySkaterStats:
+                if len(awaySkaterStats['shortHandedTimeOnIce']) == 4:
+                    timeOnIcePK = '0' +  awaySkaterStats['shortHandedTimeOnIce']
+                else:
+                    timeOnIcePK = awaySkaterStats['shortHandedTimeOnIce']
             else:
-                timeOnIcePP = awaySkaterStats['powerPlayTimeOnIce']
+                timeOnIcePK = '00:00'
 
-            if len(awaySkaterStats['shortHandedTimeOnIce']) == 4:
-                timeOnIcePK = '0' +  awaySkaterStats['shortHandedTimeOnIce']
+            if 'hits' in awayPlayerStats:
+                hits = awaySkaterStats['hits']
             else:
-                timeOnIcePK = awaySkaterStats['shortHandedTimeOnIce']
+                hits = 9999
+            
+            if 'blocked' in awayPlayerStats:
+                blocks = awaySkaterStats['blocked']
+            else:
+                blocks = 9999
 
+            if 'faceoffTaken' in awayPlayerStats:
+                faceoffsTaken = awaySkaterStats['faceoffTaken']
+            else:
+                faceoffsTaken = 9999
+
+            if 'faceOffWins' in awayPlayerStats:
+                faceoffsWon = awaySkaterStats['faceOffWins']
+            else:
+                faceoffsWon = 9999    
+
+            if 'takeaways' in awayPlayerStats:
+                takeaways = awaySkaterStats['takeaways']
+            else:
+                takeaways = 9999  
+
+            if 'giveaways' in awayPlayerStats:
+                giveaways = awaySkaterStats['giveaways']
+            else:
+                giveaways = 9999  
+            
             awaySkaterStats = {
                             'gameId': gameId,
                             'playerId': awayPlayerId,
@@ -108,17 +141,18 @@ for url in urlList:
                             'assists': awaySkaterStats['assists'],
                             'assistsPP': awaySkaterStats['powerPlayAssists'],
                             'assistsPK': awaySkaterStats['shortHandedAssists'],
-                            'hits': awaySkaterStats['hits'],
                             'shotsOnGoal': awaySkaterStats['shots'],
                             'penaltyMin': awaySkaterStats['penaltyMinutes'],
-                            'blocks': awaySkaterStats['blocked'],
                             'timeOnIce': '00:' + skaterTimeOnIce,
+
+                            'hits': hits,
+                            'blocks': blocks,
                             'timeOnIcePP': '00:' + timeOnIcePP,
                             'timeOnIcePK': '00:' + timeOnIcePK,
-                            'faceoffsTaken': awaySkaterStats['faceoffTaken'],
-                            'faceoffsWon': awaySkaterStats['faceOffWins'],
-                            'takeaways': awaySkaterStats['takeaways'],
-                            'giveaways': awaySkaterStats['giveaways']
+                            'faceoffsTaken': faceoffsTaken,
+                            'faceoffsWon': faceoffsWon,
+                            'takeaways': takeaways,
+                            'giveaways': giveaways
                             }
 
         elif 'goalieStats' in awayPlayers[Id]['stats']:
@@ -134,6 +168,26 @@ for url in urlList:
             if goalieTimeOnIce[:4] == '00:6':
                 goalieTimeOnIce = '01:0' + goalieTimeOnIce[4] + goalieTimeOnIce[5:]
 
+            if 'powerPlayShotsAgainst' in awayGoalieStats:
+                shotsFacedPP = awayGoalieStats['powerPlayShotsAgainst']
+            else:
+                shotsFacedPP = 9999  
+
+            if 'shortHandedShotsAgainst' in awayGoalieStats:
+                shotsFacedPK = awayGoalieStats['shortHandedShotsAgainst']
+            else:
+                shotsFacedPK = 9999 
+
+            if 'powerPlaySaves' in awayGoalieStats:
+                savesPP = awayGoalieStats['powerPlaySaves']
+            else:
+                savesPP = 9999 
+
+            if 'shortHandedSaves' in awayGoalieStats:
+                savesPK = awayGoalieStats['shortHandedSaves']
+            else:
+                savesPK = 9999 
+
             awayGoalieStats = {
                             'gameId': gameId,
                             'playerId': awayPlayerId,
@@ -142,11 +196,11 @@ for url in urlList:
                             'assists': awayGoalieStats['assists'],
                             'penaltyMin': awayGoalieStats['pim'],
                             'shotsFaced': awayGoalieStats['shots'],
-                            'shotsFacedPP': awayGoalieStats['powerPlayShotsAgainst'],
-                            'shotsFacedPK': awayGoalieStats['shortHandedShotsAgainst'],
+                            'shotsFacedPP': shotsFacedPP,
+                            'shotsFacedPK': shotsFacedPK,
                             'saves': awayGoalieStats['saves'],
-                            'savesPP': awayGoalieStats['powerPlaySaves'],
-                            'savesPK': awayGoalieStats['shortHandedSaves'],
+                            'savesPP': savesPP,
+                            'savesPK': savesPK,
                             'timeOnIce': goalieTimeOnIce,
                             'decision': awayGoalieStats['decision']
                             }
@@ -176,26 +230,59 @@ for url in urlList:
         homePlayerId = homePlayers[Id]['person']['id']
         homePlayerList.append(homePlayerId)
 
-        if 'skaterStats' in homePlayers[Id]['stats']:
+        if 'skaterStats' in homePlayers[Id]['stats']:                    
             homeSkaterStats = homePlayers[Id]['stats']['skaterStats']
 
-            if 'skaterStats' in homePlayers[Id]['stats']:
-                homeSkaterStats = homePlayers[Id]['stats']['skaterStats']
-                
-                if len(homeSkaterStats['timeOnIce']) == 4:
-                    timeOnIce = '0' +  homeSkaterStats['timeOnIce']
-                else:
-                    timeOnIce = homeSkaterStats['timeOnIce']
+            if len(homeSkaterStats['timeOnIce']) == 4:
+                skaterTimeOnIce = '0' +  homeSkaterStats['timeOnIce']
+            else:
+                skaterTimeOnIce = homeSkaterStats['timeOnIce']
 
+            if 'powerPlayTimeOnIce' in homeSkaterStats:
                 if len(homeSkaterStats['powerPlayTimeOnIce']) == 4:
                     timeOnIcePP = '0' +  homeSkaterStats['powerPlayTimeOnIce']
                 else:
                     timeOnIcePP = homeSkaterStats['powerPlayTimeOnIce']
+            else: 
+                timeOnIcePP = '00:00'
 
+            if 'shortHandedTimeOnIce' in homeSkaterStats:
                 if len(homeSkaterStats['shortHandedTimeOnIce']) == 4:
                     timeOnIcePK = '0' +  homeSkaterStats['shortHandedTimeOnIce']
                 else:
                     timeOnIcePK = homeSkaterStats['shortHandedTimeOnIce']
+            else:
+                timeOnIcePK = '00:00'
+
+            if 'hits' in homePlayerStats:
+                hits = homeSkaterStats['hits']
+            else:
+                hits = 9999
+            
+            if 'blocked' in homePlayerStats:
+                blocks = homeSkaterStats['blocked']
+            else:
+                blocks = 9999
+
+            if 'faceoffTaken' in homePlayerStats:
+                faceoffsTaken = homeSkaterStats['faceoffTaken']
+            else:
+                faceoffsTaken = 9999
+
+            if 'faceOffWins' in homePlayerStats:
+                faceoffsWon = homeSkaterStats['faceOffWins']
+            else:
+                faceoffsWon = 9999    
+
+            if 'takehomes' in homePlayerStats:
+                takehomes = homeSkaterStats['takehomes']
+            else:
+                takehomes = 9999  
+
+            if 'givehomes' in homePlayerStats:
+                givehomes = homeSkaterStats['givehomes']
+            else:
+                givehomes = 9999  
             
             homeSkaterStats = {
                             'gameId': gameId,
@@ -207,17 +294,18 @@ for url in urlList:
                             'assists': homeSkaterStats['assists'],
                             'assistsPP': homeSkaterStats['powerPlayAssists'],
                             'assistsPK': homeSkaterStats['shortHandedAssists'],
-                            'hits': homeSkaterStats['hits'],
                             'shotsOnGoal': homeSkaterStats['shots'],
                             'penaltyMin': homeSkaterStats['penaltyMinutes'],
-                            'blocks': homeSkaterStats['blocked'],
-                            'timeOnIce': '00:' + timeOnIce,
+                            'timeOnIce': '00:' + skaterTimeOnIce,
+
+                            'hits': hits,
+                            'blocks': blocks,
                             'timeOnIcePP': '00:' + timeOnIcePP,
                             'timeOnIcePK': '00:' + timeOnIcePK,
-                            'faceoffsTaken': homeSkaterStats['faceoffTaken'],
-                            'faceoffsWon': homeSkaterStats['faceOffWins'],
-                            'takeaways': homeSkaterStats['takeaways'],
-                            'giveaways': homeSkaterStats['giveaways']
+                            'faceoffsTaken': faceoffsTaken,
+                            'faceoffsWon': faceoffsWon,
+                            'takehomes': takehomes,
+                            'givehomes': givehomes
                             }
 
         elif 'goalieStats' in homePlayers[Id]['stats']:
@@ -230,8 +318,28 @@ for url in urlList:
             else:
                 goalieTimeOnIce = homeGoalieStats['timeOnIce']
 
-            if str(goalieTimeOnIce[:4]) == '00:6':
+            if goalieTimeOnIce[:4] == '00:6':
                 goalieTimeOnIce = '01:0' + goalieTimeOnIce[4] + goalieTimeOnIce[5:]
+
+            if 'powerPlayShotsAgainst' in homeGoalieStats:
+                shotsFacedPP = homeGoalieStats['powerPlayShotsAgainst']
+            else:
+                shotsFacedPP = 9999  
+
+            if 'shortHandedShotsAgainst' in homeGoalieStats:
+                shotsFacedPK = homeGoalieStats['shortHandedShotsAgainst']
+            else:
+                shotsFacedPK = 9999 
+
+            if 'powerPlaySaves' in homeGoalieStats:
+                savesPP = homeGoalieStats['powerPlaySaves']
+            else:
+                savesPP = 9999 
+
+            if 'shortHandedSaves' in homeGoalieStats:
+                savesPK = homeGoalieStats['shortHandedSaves']
+            else:
+                savesPK = 9999 
 
             homeGoalieStats = {
                             'gameId': gameId,
@@ -241,11 +349,11 @@ for url in urlList:
                             'assists': homeGoalieStats['assists'],
                             'penaltyMin': homeGoalieStats['pim'],
                             'shotsFaced': homeGoalieStats['shots'],
-                            'shotsFacedPP': homeGoalieStats['powerPlayShotsAgainst'],
-                            'shotsFacedPK': homeGoalieStats['shortHandedShotsAgainst'],
+                            'shotsFacedPP': shotsFacedPP,
+                            'shotsFacedPK': shotsFacedPK,
                             'saves': homeGoalieStats['saves'],
-                            'savesPP': homeGoalieStats['powerPlaySaves'],
-                            'savesPK': homeGoalieStats['shortHandedSaves'],
+                            'savesPP': savesPP,
+                            'savesPK': savesPK,
                             'timeOnIce': goalieTimeOnIce,
                             'decision': homeGoalieStats['decision']
                             }
@@ -294,10 +402,6 @@ f = open(goalieStatsOutputJson, 'w') #use 'a' to append
 f.write(goalieStatsOutput)
 f.close()
 
-with open('gamePlayerListAll.csv', 'w+', newline='') as myfile:
-    wr = csv.writer(myfile, delimiter=',', quoting=csv.QUOTE_NONE)
-    wr.writerow(gamePlayerList)
-
 df = pd.DataFrame(data={"players": gamePlayerList})
 
-df.to_csv("./gameUrlList.csv", sep=',',index=False)
+df.to_csv("./gamePlayerListAll.csv", sep=',',index=False)
