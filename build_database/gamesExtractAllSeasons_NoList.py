@@ -23,7 +23,7 @@ i = 0
 j = 0
 s = 0
 g = 0
-t = 0.25
+t = 0.01
 while startYear < 2022:
     response = requests.get(url)
     gameJson = response.json()
@@ -381,12 +381,12 @@ while startYear < 2022:
         totalGames = 55166
         gamesLeft = totalGames - n
         gamesPerSecond = n / elapsed
+        if t < 0.01:
+            t = t + 0.01
         if gamesPerSecond < 4:
-            t = t - 0.001
-            if t == 0.001:
-                t = t + 0.001
+            t = t - 0.01
         else: 
-            t = t + 0.001
+            t = t + 0.01
         hoursLeft = (gamesLeft / gamesPerSecond) / 3600
         print(str(n) + '  ' + str(gameId)[:4] + ' ' + str(gameId)[-4:] 
               + '   ' + elapsedTime + ' sec  ' + str(gamesPerSecond)[:5] 
