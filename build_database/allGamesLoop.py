@@ -9,7 +9,6 @@ startYear = 1967
 startGame = 20001
 url = startUrl + str(startYear) + '0' + str(startGame) + endUrl
 
-y = 0
 gameUrlList = []
 
 n = 0

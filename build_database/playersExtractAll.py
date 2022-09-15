@@ -1,12 +1,13 @@
-from turtle import position, window_height
 import requests
 import json
 import csv
 
+
+
 startUrl = 'https://statsapi.web.nhl.com/api/v1/people/'
 urlList = []
 
-with open('gamePlayerList.csv') as csvfile:
+with open('gamePlayerListAll.csv') as csvfile:
     reader = csv.reader(csvfile)
     playerListRead = list(reader)
 
@@ -68,7 +69,7 @@ for url in urlList:
 output = json.dumps(players, indent = 6,  separators = (", ",":"), sort_keys = True)
 #print(output)
 
-outputJson = 'players.json'
+outputJson = 'playersAll.json'
 f = open(outputJson, 'w') #use 'a' to append
 f.write(output)
 f.close()
