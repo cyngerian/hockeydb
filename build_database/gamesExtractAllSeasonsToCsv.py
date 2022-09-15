@@ -2,6 +2,7 @@ import requests
 import json
 import pandas as pd
 import time
+from dataframeToCsv import dataframeToCsv
 
 startUrl = 'https://statsapi.web.nhl.com/api/v1/game/'
 endUrl = '/feed/live'
@@ -24,7 +25,10 @@ j = 0
 s = 0
 g = 0
 t = 0.01
-while startYear < 2022:
+idx = 0
+
+w = 0
+while startYear < 2022 and w < 100:
     response = requests.get(url)
     gameJson = response.json()
     data = json.dumps(gameJson)
@@ -209,20 +213,17 @@ while startYear < 2022:
 
             else: awayPlayerStats = {}
 
+            idx = int(str(gameId) + str(awayPlayerId))
+            header_list = awaySkaterStats.keys()
             if 'skaterStats' in awayPlayers[Id]['stats']:
                 #skaterStatsTable.update({s: awaySkaterStats})
-                df = pd.DataFrame(data={"skater": awayPlayerStats})
-                print(df)
-                df.to_csv('./gameSkaterStatsAll_nl_TEST.csv', mode='a', header=False)
+                dataframeToCsv(awaySkaterStats, './gameSkaterStatsAll_nl_TEST.csv', header_list, idx)
+                #df = pd.DataFrame(awaySkaterStats, index = [idx])
+                #print(df)
+                #df.to_csv('./gameSkaterStatsAll_nl_TEST.csv', mode='a')#, header=False)
+                
                 s += 1
-
-            if 'goalieStats' in awayPlayers[Id]['stats']:
-                #goalieStatsTable.update({g: awayGoalieStats})
-                df = pd.DataFrame(data={"skater": awayPlayerStats})
-                print(df)
-                df.to_csv('./gameSkaterStatsAll_nl_TEST.csv', mode='a', header=False)
-                g += 1
-
+                #print(df.head(0))
         for player in awayPlayerList:
             if player not in gamePlayerList:
                 gamePlayerList.append(player)
@@ -402,7 +403,7 @@ while startYear < 2022:
 
         startGame += 1
         url = startUrl + str(startYear) + '0' + str(startGame) + endUrl
-
+        w += 1
     else: 
         startGame = 20001
         startYear += 1
@@ -411,33 +412,4 @@ while startYear < 2022:
         url = startUrl + str(startYear) + '0' + str(startGame) + endUrl
     
 
-
-
-gamesOutput = json.dumps(games, indent = 6,  separators = (", ",":"), sort_keys = True)
-gamesOutputJson = 'gamesAll_nl.json'
-f = open(gamesOutputJson, 'w') #use 'a' to append
-f.write(gamesOutput)
-f.close()
-
-gameResultsOutput = json.dumps(gameResults, indent = 6,  separators = (", ",":"), sort_keys = True)
-gameResultsOutputJson = 'gameResultsAll_nl.json'
-f = open(gameResultsOutputJson, 'w') #use 'a' to append
-f.write(gameResultsOutput)
-f.close()
-
-skaterStatsOutput = json.dumps(skaterStatsTable, indent = 6,  separators = (", ",":"), sort_keys = True)
-skaterStatsOutputJson = 'gameSkaterStatsAll_nl.json'
-f = open(skaterStatsOutputJson, 'w') #use 'a' to append
-f.write(skaterStatsOutput)
-f.close()
-
-goalieStatsOutput = json.dumps(goalieStatsTable, indent = 6,  separators = (", ",":"), sort_keys = True)
-goalieStatsOutputJson = 'gameGoalieStatsAll_nl.json'
-f = open(goalieStatsOutputJson, 'w') #use 'a' to append
-f.write(goalieStatsOutput)
-f.close()
-
-df = pd.DataFrame(data={"players": gamePlayerList})
-
-df.to_csv("./gamePlayerListAll_nl.csv", sep=',',index=False)
 
