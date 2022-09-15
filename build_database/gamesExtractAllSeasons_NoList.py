@@ -384,7 +384,7 @@ while startYear < 2022:
         if gamesPerSecond < 4:
             t = t - 0.001
             if t == 0.001:
-                t + 0.001
+                t = t + 0.001
         else: 
             t = t + 0.001
         hoursLeft = (gamesLeft / gamesPerSecond) / 3600
