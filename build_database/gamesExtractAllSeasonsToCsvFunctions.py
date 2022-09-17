@@ -1,9 +1,10 @@
 import requests
 import json
 import time
-from extractFxns import (gameInfo, gameResult,
+from extractFxns import (getGameInfo, getGameResult,
                         listSkaters, listGoalies,
-                        skaterStats, goalieStats)
+                        getSkaterStats, getGoalieStats)
+
 startUrl = 'https://statsapi.web.nhl.com/api/v1/game/'
 endUrl = '/feed/live'
 year = 1967
@@ -20,19 +21,18 @@ while year < 2022:
     if 'gamePk' in gameData:
         gameId = gameData['gamePk']
 
-        print(gameInfo(gameId, gameData))
+        print(getGameInfo(gameId, gameData))
 
-        print(gameResult(gameId, gameData))
+        print(getGameResult(gameId, gameData))
         
-        for Id in listSkaters(gameData, 'away')[1]:
-            print(skaterStats(gameId, gameData, 'away', Id))
-        for Id in listGoalies(gameData, 'away')[1]:
-            print(goalieStats(gameId, gameData, 'away', Id))
-
-        for Id in listSkaters(gameData, 'home')[1]:
-            print(skaterStats(gameId, gameData, 'home', Id))
-        for Id in listGoalies(gameData, 'home')[1]:
-            print(goalieStats(gameId, gameData, 'home', Id))
+        for Id in listSkaters(gameData, 'away'):
+            print(getSkaterStats(gameId, gameData, 'away', Id))
+        for Id in listGoalies(gameData, 'away'):
+            print(getGoalieStats(gameId, gameData, 'away', Id))
+        for Id in listSkaters(gameData, 'home'):
+            print(getSkaterStats(gameId, gameData, 'home', Id))
+        for Id in listGoalies(gameData, 'home'):
+            print(getGoalieStats(gameId, gameData, 'home', Id))
         
         game += 1
         url = startUrl + str(year) + '0' + str(game) + endUrl
