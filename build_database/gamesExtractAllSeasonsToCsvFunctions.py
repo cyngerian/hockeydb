@@ -2,7 +2,7 @@ import requests
 import json
 import time
 from extractFxns import (gameInfo, gameResult,
-                        listPlayers, listSkaters, listGoalies,
+                        listSkaters, listGoalies,
                         skaterStats, goalieStats)
 startUrl = 'https://statsapi.web.nhl.com/api/v1/game/'
 endUrl = '/feed/live'

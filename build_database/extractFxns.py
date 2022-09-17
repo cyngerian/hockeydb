@@ -31,22 +31,18 @@ def listPlayers(gameData, side):
 
 def listSkaters(gameData, side):
     skaters = gameData['liveData']['boxscore']['teams'][side]['skaters']#int
-    players = gameData['liveData']['boxscore']['teams'][side]['players']#str
     skatersIdList = [] #str
     skatersList = list(skaters) #int
     for Id in skatersList: #int
-        playerId = players['ID' + str(Id)]['person']['id'] #int
-        skatersIdList.append('ID' + str(playerId)) #str
+        skatersIdList.append('ID' + str(Id)) #str
     return skatersList, skatersIdList #int, str 
 
 def listGoalies(gameData, side):
     goalies = gameData['liveData']['boxscore']['teams'][side]['goalies']#int
-    players = gameData['liveData']['boxscore']['teams'][side]['players']#str
     goaliesIdList = [] #str
     goaliesList = list(goalies) #int
     for Id in goaliesList: #int
-        playerId = players['ID' + str(Id)]['person']['id'] #int
-        goaliesIdList.append('ID' + str(playerId)) #str
+        goaliesIdList.append('ID' + str(Id)) #str
     return goaliesList, goaliesIdList #int, str
 
 def skaterStats(gameId, gameData, side, Id):
