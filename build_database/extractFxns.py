@@ -20,30 +20,19 @@ def gameResult(gameId, gameData):
                 }
     return gameResultsTable
 
-def listPlayers(gameData, side):
-    players = gameData['liveData']['boxscore']['teams'][side]['players'] #str
-    playerList = [] #int
-    playerIdList = list(players) #str
-    for Id in playerIdList: #str
-        playerId = players[Id]['person']['id'] #int
-        playerList.append(playerId) #int
-    return playerList, playerIdList #int, str
-
 def listSkaters(gameData, side):
-    skaters = gameData['liveData']['boxscore']['teams'][side]['skaters']#int
-    skatersIdList = [] #str
-    skatersList = list(skaters) #int
-    for Id in skatersList: #int
-        skatersIdList.append('ID' + str(Id)) #str
-    return skatersList, skatersIdList #int, str 
+    skatersList = list(gameData['liveData']['boxscore']['teams'][side]['skaters']) 
+    skatersIdList = []
+    for Id in skatersList:
+        skatersIdList.append('ID' + str(Id))
+    return skatersList, skatersIdList 
 
 def listGoalies(gameData, side):
-    goalies = gameData['liveData']['boxscore']['teams'][side]['goalies']#int
-    goaliesIdList = [] #str
-    goaliesList = list(goalies) #int
-    for Id in goaliesList: #int
-        goaliesIdList.append('ID' + str(Id)) #str
-    return goaliesList, goaliesIdList #int, str
+    goaliesList = list(gameData['liveData']['boxscore']['teams'][side]['goalies'])
+    goaliesIdList = []
+    for Id in goaliesList:
+        goaliesIdList.append('ID' + str(Id))
+    return goaliesList, goaliesIdList
 
 def skaterStats(gameId, gameData, side, Id):
     players = gameData['liveData']['boxscore']['teams'][side]['players']
