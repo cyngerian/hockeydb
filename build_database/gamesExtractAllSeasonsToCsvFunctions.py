@@ -1,18 +1,16 @@
 import requests
 import json
 import time
-from skaterStatsFxns import skaterStatsDict, listPLayers
-
+from extractFxns import (gameInfo, gameResult,
+                        listPlayers, listSkaters, listGoalies,
+                        skaterStats, goalieStats)
 startUrl = 'https://statsapi.web.nhl.com/api/v1/game/'
 endUrl = '/feed/live'
-startYear = 1967
-startGame = 20001
-url = startUrl + str(startYear) + '0' + str(startGame) + endUrl
+year = 1967
+game = 20001
+url = startUrl + str(year) + '0' + str(game) + endUrl
 
-
-
-startYear = 1967
-while startYear < 2022:
+while year < 2022:
     time.sleep(0.35)
     response = requests.get(url)
     gameJson = response.json()
@@ -22,18 +20,26 @@ while startYear < 2022:
     if 'gamePk' in gameData:
         gameId = gameData['gamePk']
 
-        for Id in listPLayers(gameData, 'away')[1]:
-            print(skaterStatsDict(gameData, 'away', Id))
+        print(gameInfo(gameId, gameData))
 
-        for Id in listPLayers(gameData, 'home')[1]:
-            print(skaterStatsDict(gameData, 'home', Id))
+        print(gameResult(gameId, gameData))
         
-        startGame += 1
-        url = startUrl + str(startYear) + '0' + str(startGame) + endUrl
+        for Id in listSkaters(gameData, 'away')[1]:
+            print(skaterStats(gameId, gameData, 'away', Id))
+        for Id in listGoalies(gameData, 'away')[1]:
+            print(goalieStats(gameId, gameData, 'away', Id))
+
+        for Id in listSkaters(gameData, 'home')[1]:
+            print(skaterStats(gameId, gameData, 'home', Id))
+        for Id in listGoalies(gameData, 'home')[1]:
+            print(goalieStats(gameId, gameData, 'home', Id))
+        
+        game += 1
+        url = startUrl + str(year) + '0' + str(game) + endUrl
 
     else:
-        startGame = 20001
-        startYear += 1
-        if startYear == 2004:
-            startYear += 1
-        url = startUrl + str(startYear) + '0' + str(startGame) + endUrl
+        game = 20001
+        year += 1
+        if year == 2004:
+            year += 1
+        url = startUrl + str(year) + '0' + str(game) + endUrl
